@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>WebSocket Teste</title>
+</head>
+<body>
+  <h1>Teste de WebSocket</h1>
+  <p id="mensagem"></p>
+
+  <script>
+    const ws = new WebSocket(`wss://${location.host}`);
+
+    ws.onopen = () => {
+      console.log('Conectado ao WebSocket');
+      ws.send('Olá do navegador!');
+    };
+
+    ws.onmessage = (event) => {
+      document.getElementById('mensagem').innerText = 'Servidor: ' + event.data;
+      console.log('Mensagem recebida:', event.data);
+    };
+  </script>
+</body>
+</html>
